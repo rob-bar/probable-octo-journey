@@ -10,7 +10,9 @@
   "dependencies": {
     "@mui/material": "^5.7.0",
     "@mui/styled-engine-sc": "^5.7.0",
+    "apexcharts": "^3.35.2",
     "react": "^18.0.0",
+    "react-apexcharts": "^1.4.0",
     "react-dom": "^18.0.0",
     "styled-components": "^5.3.5"
   },

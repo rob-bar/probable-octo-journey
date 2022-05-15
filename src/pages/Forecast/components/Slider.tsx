@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { Button } from "@mui/material"
 import { incrementDate } from "../../../core/pure/Date"
-import { average } from "../../../core/pure/Average"
+import { average } from "../../../core/pure/Array"
 import {
   filterForecastByDateOffsets,
   getTemperatureFromForecasts,
@@ -57,7 +57,7 @@ export const Slider = ({
             {capitalize(city)} {currentDate.toLocaleDateString()}
           </Today>
           <AverageTempForThreeDays>
-            Average Temp next 3 days:{" "}
+            Average Temperature next 3 days:{" "}
             <strong>
               {averageTempForTheNextThreeDays.toFixed(2)}
               {getUnitAbbreviation(unit)}
@@ -102,5 +102,7 @@ const NextArrow = styled.div`
 
 const ForeCastCardWrapper = styled.div``
 
-const Today = styled.h2``
+const Today = styled.h2`
+  margin-top: 0;
+`
 const AverageTempForThreeDays = styled.p``

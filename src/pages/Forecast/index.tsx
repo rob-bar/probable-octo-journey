@@ -1,10 +1,14 @@
 import { ForecastResponse } from "../../api/getForecastForFiveDays"
 import styled from "styled-components"
-import { Checkbox, FormControlLabel, TextField } from "@mui/material"
+import { TextField } from "@mui/material"
 import { useState } from "react"
 import { Units } from "../../core/Config"
 import { Slider } from "./components/Slider"
 import { UnitSwitcher } from "./components/UnitSwitcher"
+import { WeatherCard } from "./components/WeatherCard"
+import { incrementDate } from "../../core/pure/Date"
+import { filterForecastByDateOffsets } from "../../core/pure/forecastRecord"
+import { HourlyCard } from "./components/HourlyCard"
 
 type ForecastPageProps = {
   forecast: ForecastResponse
@@ -46,6 +50,45 @@ export const ForecastPage = ({
         currentDate={currentDate}
         setCurrentDate={setCurrentDate}
       />
+      <WeatherCards>
+        <WeatherCard
+          unit={unit}
+          date={incrementDate(currentDate, 1)}
+          forecast={filterForecastByDateOffsets(
+            forecast.list,
+            incrementDate(currentDate, 1),
+            incrementDate(currentDate, 2)
+          )}
+        />
+        <WeatherCard
+          unit={unit}
+          date={incrementDate(currentDate, 2)}
+          forecast={filterForecastByDateOffsets(
+            forecast.list,
+            incrementDate(currentDate, 2),
+            incrementDate(currentDate, 3)
+          )}
+        />
+        <WeatherCard
+          unit={unit}
+          date={incrementDate(currentDate, 3)}
+          forecast={filterForecastByDateOffsets(
+            forecast.list,
+            incrementDate(currentDate, 3),
+            incrementDate(currentDate, 4)
+          )}
+        />
+      </WeatherCards>
+      <HourlyCardWrapper>
+        <HourlyCard
+          unit={unit}
+          forecast={filterForecastByDateOffsets(
+            forecast.list,
+            currentDate,
+            incrementDate(currentDate, 1)
+          )}
+        />
+      </HourlyCardWrapper>
     </Page>
   )
 }
@@ -62,10 +105,26 @@ const Header = styled.header`
 `
 
 const Page = styled.div`
-  height: 100%;
+  min-height: 100%;
   background-color: #f6fbfc;
+  padding-bottom: 2rem;
 `
+
 const Title = styled.h1`
   font-size: 2rem;
   flex-grow: 1;
+`
+
+const WeatherCards = styled.div`
+  margin: 2rem;
+  box-sizing: border-box;
+  padding: 0 6.25rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+`
+
+const HourlyCardWrapper = styled.div`
+  padding: 0 6.25rem;
+  margin: 2rem;
 `

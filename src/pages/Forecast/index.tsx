@@ -4,13 +4,14 @@ import { Checkbox, FormControlLabel, TextField } from "@mui/material"
 import { useState } from "react"
 import { Units } from "../../core/Config"
 import { Slider } from "./components/Slider"
+import { UnitSwitcher } from "./components/UnitSwitcher"
 
 type ForecastPageProps = {
   forecast: ForecastResponse
   city: string
   setCity: (s: string) => void
   unit: Units
-  setUnit: (s: Units) => void
+  setUnit: (u: Units) => void
 }
 
 export const ForecastPage = ({
@@ -24,29 +25,11 @@ export const ForecastPage = ({
   const today = new Date(new Date().setHours(0, 0, 0, 0))
   const [currentDate, setCurrentDate] = useState<Date>(today)
 
-  const toggleUnit = (unit: Units) => {
-    switch (unit) {
-      case Units.STANDARD:
-        return Units.METRIC
-      case Units.METRIC:
-        return Units.STANDARD
-      default:
-        return Units.METRIC
-    }
-  }
   return (
     <Page>
       <Header>
         <Title>Forecast App</Title>
-        <FormControlLabel
-          control={
-            <Checkbox
-              defaultChecked
-              onChange={e => setUnit(toggleUnit(unit))}
-            />
-          }
-          label="Celsius degrees (°)"
-        />
+        <UnitSwitcher unit={unit} setUnit={setUnit} />
         <TextField
           id="search-city"
           placeholder="City"
@@ -62,7 +45,7 @@ export const ForecastPage = ({
         today={today}
         currentDate={currentDate}
         setCurrentDate={setCurrentDate}
-      ></Slider>
+      />
     </Page>
   )
 }

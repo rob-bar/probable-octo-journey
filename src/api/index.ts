@@ -1,0 +1,1 @@
+export { getForecastForFiveDays } from "./getForecastForFiveDays"

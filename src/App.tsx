@@ -1,13 +1,13 @@
 import { GlobalStyle } from "./GlobalStyle"
 import { StyledEngineProvider as MUIThemeProvider } from "@mui/material/styles"
-import { Forecast } from "./components/Forecast"
+import { ForecastProvider } from "./ForecastProvider"
 
 export function App() {
   return (
     <div className="App">
       <GlobalStyle />
       <MUIThemeProvider injectFirst>
-        <Forecast />
+        <ForecastProvider />
       </MUIThemeProvider>
     </div>
   )

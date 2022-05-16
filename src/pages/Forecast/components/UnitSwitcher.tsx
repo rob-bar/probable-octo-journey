@@ -1,5 +1,5 @@
 import { Checkbox, FormControlLabel } from "@mui/material"
-import { Units } from "../../../core/Config"
+import { Units } from "src/core/Config"
 
 type UnitSwitcherProps = {
   unit: Units
@@ -24,7 +24,7 @@ export const UnitSwitcher = ({
   return (
     <FormControlLabel
       control={
-        <Checkbox defaultChecked onChange={e => setUnit(toggleUnit(unit))} />
+        <Checkbox defaultChecked onChange={() => setUnit(toggleUnit(unit))} />
       }
       label="Celsius degrees (°)"
     />

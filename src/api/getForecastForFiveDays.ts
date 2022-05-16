@@ -1,4 +1,4 @@
-import { Units } from "../core/Config"
+import { Units } from "src/core/Config"
 import { City, MainInformation, WeatherForecast, Wind } from "../global"
 import { API_URL, API_KEY } from "./Constants"
 

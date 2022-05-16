@@ -1,8 +1,8 @@
 import styled from "styled-components"
-import { ForecastRecord } from "../../../api/getForecastForFiveDays"
-import { Units } from "../../../core/Config"
-import { getTemperatureFromForecasts } from "../../../core/pure/forecastRecord"
 import Chart from "react-apexcharts"
+
+import { ForecastRecord } from "src/api/getForecastForFiveDays"
+import { Units } from "src/core/Config"
 
 type HourlyCardProps = {
   forecast: ForecastRecord[]
@@ -15,6 +15,9 @@ export const HourlyCard = ({
   unit,
   className,
 }: HourlyCardProps): JSX.Element => {
+  if (forecast.length === 0)
+    return <EmptyContainer className={className}>No Data Found</EmptyContainer>
+
   const data = {
     series: [
       {
@@ -105,4 +108,17 @@ const Container = styled.div`
   border-radius: 0.875rem;
   padding: 2rem;
   width: 100%;
+`
+
+const EmptyContainer = styled.div`
+  box-sizing: border-box;
+  background-color: #fff;
+  box-shadow: 0 0.3125rem 1.5625rem 0 #0000001a;
+  border-radius: 0.875rem;
+  padding: 2rem;
+  width: 100%;
+  height: 37.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `

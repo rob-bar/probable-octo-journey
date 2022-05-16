@@ -1,4 +1,5 @@
 export function average(input: number[]): number {
+  if (input.length === 0) return 0
   return input.reduce((a, b) => a + b) / input.length
 }
 

@@ -1,13 +1,14 @@
-import { ForecastResponse } from "../../api/getForecastForFiveDays"
 import styled from "styled-components"
-import { TextField } from "@mui/material"
 import { useState } from "react"
-import { Units } from "../../core/Config"
+import { TextField } from "@mui/material"
+
+import { ForecastResponse } from "src/api/getForecastForFiveDays"
+import { Units } from "src/core/Config"
+import { WeatherCard } from "src/components/WeatherCard"
+import { incrementDate, filterForecastByDateOffsets } from "src/core/pure"
+
 import { Slider } from "./components/Slider"
 import { UnitSwitcher } from "./components/UnitSwitcher"
-import { WeatherCard } from "./components/WeatherCard"
-import { incrementDate } from "../../core/pure/Date"
-import { filterForecastByDateOffsets } from "../../core/pure/forecastRecord"
 import { HourlyCard } from "./components/HourlyCard"
 
 type ForecastPageProps = {

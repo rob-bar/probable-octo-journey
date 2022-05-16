@@ -10,17 +10,21 @@ import { Config } from "./core/Config"
 export const ForecastProvider = (): JSX.Element => {
   const [forecast, setForecast] = useState<ForecastResponse | null>(null)
   const [isLoading, setIsLoading] = useState(true)
+
   const [city, setCity] = useState(Config.city)
   const [unit, setUnit] = useState(Config.unit)
 
+  async function fetchForecast() {
+    setForecast(await getForecastForFiveDays(unit, city))
+    setIsLoading(false)
+  }
+
   useEffect(() => {
-    ;(async () => {
-      setForecast(await getForecastForFiveDays(unit, city))
-      setIsLoading(false)
-    })()
+    fetchForecast()
   }, [unit, city])
 
   if (isLoading || forecast === null) return <LoadingPage />
+
   return (
     <ForecastPage
       forecast={forecast}

@@ -1,16 +1,10 @@
 import styled from "styled-components"
 import { Button } from "@mui/material"
-import { incrementDate } from "../../../core/pure/Date"
-import { average } from "../../../core/pure/Array"
-import {
-  filterForecastByDateOffsets,
-  getTemperatureFromForecasts,
-} from "../../../core/pure/forecastRecord"
 
-import { getUnitAbbreviation } from "../../../core/pure/Unit"
-import { capitalize } from "../../../core/pure/String"
-import { ForecastResponse } from "../../../api/getForecastForFiveDays"
-import { Units } from "../../../core/Config"
+import { incrementDate } from "src/core/pure/Date"
+import { ForecastResponse } from "src/api/getForecastForFiveDays"
+import { Units } from "src/core/Config"
+import { LargeWeatherCard } from "src/components/LargeWeatherCard"
 
 type SliderProps = {
   unit: Units
@@ -29,21 +23,11 @@ export const Slider = ({
   currentDate,
   setCurrentDate,
 }: SliderProps): JSX.Element => {
-  // used Techniques here are => Abstraction & Composition
-  const averageTempForTheNextThreeDays = average(
-    getTemperatureFromForecasts(
-      filterForecastByDateOffsets(
-        forecast.list,
-        currentDate,
-        incrementDate(currentDate, 3)
-      )
-    )
-  )
-
   return (
     <Container>
       <PrevArrow>
         <Button
+          size="large"
           variant="contained"
           disabled={currentDate.getTime() === today.getTime()}
           onClick={() => setCurrentDate(incrementDate(currentDate, -1))}
@@ -52,21 +36,16 @@ export const Slider = ({
         </Button>
       </PrevArrow>
       <ForeCastCardWrapper>
-        <Card>
-          <Today>
-            {capitalize(city)} {currentDate.toLocaleDateString()}
-          </Today>
-          <AverageTempForThreeDays>
-            Average Temperature next 3 days:{" "}
-            <strong>
-              {averageTempForTheNextThreeDays.toFixed(2)}
-              {getUnitAbbreviation(unit)}
-            </strong>
-          </AverageTempForThreeDays>
-        </Card>
+        <LargeWeatherCard
+          unit={unit}
+          city={city}
+          forecast={forecast}
+          currentDate={currentDate}
+        />
       </ForeCastCardWrapper>
       <NextArrow>
         <Button
+          size="large"
           variant="contained"
           disabled={currentDate.getTime() === incrementDate(today, 4).getTime()}
           onClick={() => setCurrentDate(incrementDate(currentDate, 1))}
@@ -77,13 +56,6 @@ export const Slider = ({
     </Container>
   )
 }
-
-const Card = styled.div`
-  background-color: #fff;
-  box-shadow: 0 0.3125rem 1.5625rem 0 #0000001a;
-  border-radius: 0.875rem;
-  padding: 2rem;
-`
 
 const Container = styled.div`
   width: 100%;
@@ -96,13 +68,9 @@ const Container = styled.div`
 const PrevArrow = styled.div`
   padding: 2rem;
 `
+
 const NextArrow = styled.div`
   padding: 2rem;
 `
 
 const ForeCastCardWrapper = styled.div``
-
-const Today = styled.h2`
-  margin-top: 0;
-`
-const AverageTempForThreeDays = styled.p``

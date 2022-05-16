@@ -1,5 +1,9 @@
 # probable-octo-journey
 
+## Demo
+
+You can find the app on Netlify: [here](https://dashing-travesseiro-8bc057.netlify.app/)
+
 ## My remarks
 
 Hi there, reader of this code.
@@ -14,6 +18,7 @@ Some small remarks from my end:
   - core holds a config and all the pure functions with their tests
   - pages holds the loading and the forecastPage
   - components more bound to the page I kept in the pages directory (like HourlyCard & Slider for example)
+  - some components can be split up even further and maybe Atomic Design can help, but for now this feels fine.
 
 - I did not use React.context for this small application I know it would avoid a small prop drill here and there.
   for city and unit coming from ForecastProvider it would have been a good case.

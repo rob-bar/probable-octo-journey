@@ -23,13 +23,17 @@ export const Slider = ({
   currentDate,
   setCurrentDate,
 }: SliderProps): JSX.Element => {
+  const currentDateIsToday = currentDate.getTime() === today.getTime()
+  const currentDateIsFourDaysFromNow =
+    currentDate.getTime() === incrementDate(today, 4).getTime()
+
   return (
     <Container>
       <PrevArrow>
         <Button
           size="large"
           variant="contained"
-          disabled={currentDate.getTime() === today.getTime()}
+          disabled={currentDateIsToday}
           onClick={() => setCurrentDate(incrementDate(currentDate, -1))}
         >
           Prev
@@ -47,7 +51,7 @@ export const Slider = ({
         <Button
           size="large"
           variant="contained"
-          disabled={currentDate.getTime() === incrementDate(today, 4).getTime()}
+          disabled={currentDateIsFourDaysFromNow}
           onClick={() => setCurrentDate(incrementDate(currentDate, 1))}
         >
           Next

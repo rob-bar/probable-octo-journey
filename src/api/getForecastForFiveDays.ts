@@ -8,7 +8,7 @@ export type ForecastRecord = {
   dt_txt: string
   main: MainInformation
   pop: number
-  sys: { prod: string }
+  sys: { pod: string }
   visibility: number
   weather: WeatherForecast[]
   wind: Wind

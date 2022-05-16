@@ -1,6 +1,6 @@
 export type Location = {
   lat: number
-  long: number
+  lon: number
 }
 
 export type City = {

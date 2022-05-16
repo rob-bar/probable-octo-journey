@@ -504,9 +504,6 @@ export const forecastRecordFixture: ForecastResponse = {
       },
       visibility: 10000,
       pop: 0.78,
-      rain: {
-        "3h": 0.6,
-      },
       sys: {
         pod: "d",
       },
@@ -543,9 +540,6 @@ export const forecastRecordFixture: ForecastResponse = {
       },
       visibility: 10000,
       pop: 0.87,
-      rain: {
-        "3h": 0.58,
-      },
       sys: {
         pod: "d",
       },
@@ -1122,9 +1116,6 @@ export const forecastRecordFixture: ForecastResponse = {
       },
       visibility: 10000,
       pop: 0.2,
-      rain: {
-        "3h": 0.19,
-      },
       sys: {
         pod: "d",
       },
@@ -1161,9 +1152,6 @@ export const forecastRecordFixture: ForecastResponse = {
       },
       visibility: 10000,
       pop: 0.75,
-      rain: {
-        "3h": 1.06,
-      },
       sys: {
         pod: "n",
       },
@@ -1200,9 +1188,6 @@ export const forecastRecordFixture: ForecastResponse = {
       },
       visibility: 10000,
       pop: 0.77,
-      rain: {
-        "3h": 1.34,
-      },
       sys: {
         pod: "n",
       },
@@ -1239,9 +1224,6 @@ export const forecastRecordFixture: ForecastResponse = {
       },
       visibility: 10000,
       pop: 0.61,
-      rain: {
-        "3h": 0.81,
-      },
       sys: {
         pod: "d",
       },
@@ -1278,9 +1260,6 @@ export const forecastRecordFixture: ForecastResponse = {
       },
       visibility: 10000,
       pop: 0.53,
-      rain: {
-        "3h": 0.2,
-      },
       sys: {
         pod: "d",
       },
@@ -1317,9 +1296,6 @@ export const forecastRecordFixture: ForecastResponse = {
       },
       visibility: 10000,
       pop: 0.32,
-      rain: {
-        "3h": 0.1,
-      },
       sys: {
         pod: "d",
       },
@@ -1356,9 +1332,6 @@ export const forecastRecordFixture: ForecastResponse = {
       },
       visibility: 10000,
       pop: 0.37,
-      rain: {
-        "3h": 0.16,
-      },
       sys: {
         pod: "d",
       },
@@ -1395,9 +1368,6 @@ export const forecastRecordFixture: ForecastResponse = {
       },
       visibility: 10000,
       pop: 0.53,
-      rain: {
-        "3h": 0.45,
-      },
       sys: {
         pod: "d",
       },
@@ -1434,9 +1404,6 @@ export const forecastRecordFixture: ForecastResponse = {
       },
       visibility: 10000,
       pop: 0.53,
-      rain: {
-        "3h": 0.94,
-      },
       sys: {
         pod: "d",
       },
@@ -1473,9 +1440,6 @@ export const forecastRecordFixture: ForecastResponse = {
       },
       visibility: 10000,
       pop: 0.28,
-      rain: {
-        "3h": 0.12,
-      },
       sys: {
         pod: "n",
       },

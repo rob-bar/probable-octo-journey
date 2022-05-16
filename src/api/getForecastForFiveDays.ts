@@ -17,7 +17,7 @@ export type ForecastRecord = {
 export type ForecastResponse = {
   city: City
   cnt: number
-  code: string
+  cod: string
   list: ForecastRecord[]
   message: number
 }

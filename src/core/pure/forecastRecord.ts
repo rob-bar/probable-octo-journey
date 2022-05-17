@@ -17,3 +17,13 @@ export function filterForecastByDateOffsets(
       forecast.dt < untilDate.getTime() / 1000
   )
 }
+
+export function getDescriptionsFromForecasts(
+  forecasts: ForecastRecord[]
+): string[] {
+  return forecasts.map((f: ForecastRecord) => f.weather[0].description)
+}
+
+export function getMainFromForecasts(forecasts: ForecastRecord[]): string[] {
+  return forecasts.map((f: ForecastRecord) => f.weather[0].main)
+}

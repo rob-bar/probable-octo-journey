@@ -8,6 +8,8 @@ import {
   capitalize,
   zeroFill,
   getUnitAbbreviation,
+  getDescriptionsFromForecasts,
+  getMainFromForecasts,
 } from "src/core/pure"
 import { WeatherIcon, WeatherCondition } from "./WeatherIcon"
 import { useContext } from "react"
@@ -26,15 +28,6 @@ export const WeatherCard = ({
 
   const { unit } = useContext(UnitContext)
 
-  const averageTemp = average(getTemperatureFromForecasts(forecast))
-  const allWeatherForecastsForThisDay = forecast.map(
-    (f: ForecastRecord) => f.weather[0].description
-  )
-
-  const allMainWeatherForecastsForThisDay = forecast.map(
-    (f: ForecastRecord) => f.weather[0].main
-  )
-
   return (
     <Container>
       <Title>
@@ -44,20 +37,20 @@ export const WeatherCard = ({
       <p>
         Average Temperature:{" "}
         <strong>
-          {averageTemp.toFixed(2)}
+          {average(getTemperatureFromForecasts(forecast)).toFixed(2)}
           {getUnitAbbreviation(unit)}
         </strong>
       </p>
       <p>
         Forecast:{" "}
         <strong>
-          {capitalize(String(mode(allWeatherForecastsForThisDay)))}
+          {capitalize(String(mode(getDescriptionsFromForecasts(forecast))))}
         </strong>
       </p>
       <StyledWeatherIcon
         condition={
           String(
-            mode(allMainWeatherForecastsForThisDay)
+            mode(getMainFromForecasts(forecast))
           ).toLocaleLowerCase() as WeatherCondition
         }
       />

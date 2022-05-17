@@ -8,6 +8,8 @@ import {
   capitalize,
   getUnitAbbreviation,
   mode,
+  getDescriptionsFromForecasts,
+  getMainFromForecasts,
 } from "src/core/pure"
 
 import {
@@ -49,14 +51,7 @@ export const LargeWeatherCard = ({
   )
 
   const averageTemp = average(getTemperatureFromForecasts(todayForecast))
-
-  const allWeatherForecastsForThisDay = todayForecast.map(
-    (f: ForecastRecord) => f.weather[0].description
-  )
-  const mostCommonForecast = mode(allWeatherForecastsForThisDay)
-  const allMainWeatherForecastsForThisDay = todayForecast.map(
-    (f: ForecastRecord) => f.weather[0].main
-  )
+  const mostCommonForecast = mode(getDescriptionsFromForecasts(todayForecast))
 
   return (
     <>
@@ -74,6 +69,7 @@ export const LargeWeatherCard = ({
               {getUnitAbbreviation(unit)}
             </strong>
           </AverageTempForThreeDays>
+
           <p>
             Average Temperature:{" "}
             <strong>
@@ -81,6 +77,7 @@ export const LargeWeatherCard = ({
               {averageTemp ? getUnitAbbreviation(unit) : ""}
             </strong>
           </p>
+
           <p>
             Forecast:{" "}
             <strong>
@@ -91,10 +88,11 @@ export const LargeWeatherCard = ({
               )}
             </strong>
           </p>
+
           <StyledWeatherIcon
             condition={
               String(
-                mode(allMainWeatherForecastsForThisDay)
+                mode(getMainFromForecasts(todayForecast))
               ).toLocaleLowerCase() as WeatherCondition
             }
           />

@@ -1,15 +1,10 @@
 import { Checkbox, FormControlLabel } from "@mui/material"
+import { useContext } from "react"
 import { Units } from "src/core/Config"
+import { UnitContext } from "src/core/context/UnitProvider"
 
-type UnitSwitcherProps = {
-  unit: Units
-  setUnit: (u: Units) => void
-}
-
-export const UnitSwitcher = ({
-  unit,
-  setUnit,
-}: UnitSwitcherProps): JSX.Element => {
+export const UnitSwitcher = (): JSX.Element => {
+  const { unit, setUnit } = useContext(UnitContext)
   const toggleUnit = (unit: Units) => {
     switch (unit) {
       case Units.STANDARD:

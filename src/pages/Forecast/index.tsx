@@ -14,15 +14,9 @@ import { CitySearcher } from "./components/CitySearcher"
 
 type ForecastPageProps = {
   forecast: ForecastResponse
-  unit: Units
-  setUnit: (u: Units) => void
 }
 
-export const ForecastPage = ({
-  forecast,
-  unit,
-  setUnit,
-}: ForecastPageProps): JSX.Element => {
+export const ForecastPage = ({ forecast }: ForecastPageProps): JSX.Element => {
   // We use today with a reset of the hours for easier comparisons in the future
   const today = new Date(new Date().setHours(0, 0, 0, 0))
   const [currentDate, setCurrentDate] = useState<Date>(today)
@@ -31,11 +25,10 @@ export const ForecastPage = ({
     <Page>
       <Header>
         <Title>Forecast App</Title>
-        <UnitSwitcher unit={unit} setUnit={setUnit} />
+        <UnitSwitcher />
         <CitySearcher />
       </Header>
       <Slider
-        unit={unit}
         forecast={forecast}
         today={today}
         currentDate={currentDate}
@@ -43,7 +36,6 @@ export const ForecastPage = ({
       />
       <WeatherCards>
         <WeatherCard
-          unit={unit}
           date={incrementDate(currentDate, 1)}
           forecast={filterForecastByDateOffsets(
             forecast.list,
@@ -52,7 +44,6 @@ export const ForecastPage = ({
           )}
         />
         <WeatherCard
-          unit={unit}
           date={incrementDate(currentDate, 2)}
           forecast={filterForecastByDateOffsets(
             forecast.list,
@@ -61,7 +52,6 @@ export const ForecastPage = ({
           )}
         />
         <WeatherCard
-          unit={unit}
           date={incrementDate(currentDate, 3)}
           forecast={filterForecastByDateOffsets(
             forecast.list,
@@ -72,7 +62,6 @@ export const ForecastPage = ({
       </WeatherCards>
       <HourlyCardWrapper>
         <HourlyCard
-          unit={unit}
           forecast={filterForecastByDateOffsets(
             forecast.list,
             currentDate,

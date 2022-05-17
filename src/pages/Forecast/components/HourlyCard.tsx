@@ -3,20 +3,22 @@ import Chart from "react-apexcharts"
 
 import { ForecastRecord } from "src/api/getForecastForFiveDays"
 import { Units } from "src/core/Config"
+import { useContext } from "react"
+import { UnitContext } from "src/core/context/UnitProvider"
 
 type HourlyCardProps = {
   forecast: ForecastRecord[]
-  unit: Units
   className?: string
 }
 
 export const HourlyCard = ({
   forecast,
-  unit,
   className,
 }: HourlyCardProps): JSX.Element => {
   if (forecast.length === 0)
     return <EmptyContainer className={className}>No Data Found</EmptyContainer>
+
+  const { unit } = useContext(UnitContext)
 
   const data = {
     series: [

@@ -10,7 +10,6 @@ import {
   mode,
 } from "src/core/pure"
 
-import { Units } from "src/core/Config"
 import {
   ForecastRecord,
   ForecastResponse,
@@ -18,19 +17,20 @@ import {
 import { WeatherCondition, WeatherIcon } from "./WeatherIcon"
 import { useContext } from "react"
 import { CityContext } from "src/core/context/CityProvider"
+import { UnitContext } from "src/core/context/UnitProvider"
 
 type LargeWeatherCardProps = {
-  unit: Units
   forecast: ForecastResponse
   currentDate: Date
 }
 
 export const LargeWeatherCard = ({
-  unit,
   forecast,
   currentDate,
 }: LargeWeatherCardProps): JSX.Element => {
   const { city } = useContext(CityContext)
+  const { unit } = useContext(UnitContext)
+
   // used Techniques here are => Abstraction & Composition
   const averageTempForTheNextThreeDays = average(
     getTemperatureFromForecasts(

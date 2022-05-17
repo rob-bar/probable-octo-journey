@@ -10,19 +10,21 @@ import {
   getUnitAbbreviation,
 } from "src/core/pure"
 import { WeatherIcon, WeatherCondition } from "./WeatherIcon"
+import { useContext } from "react"
+import { UnitContext } from "src/core/context/UnitProvider"
 
 type WeatherCardProps = {
   date: Date
   forecast: ForecastRecord[]
-  unit: Units
 }
 
 export const WeatherCard = ({
   date,
   forecast,
-  unit,
 }: WeatherCardProps): JSX.Element | null => {
   if (forecast.length === 0) return null
+
+  const { unit } = useContext(UnitContext)
 
   const averageTemp = average(getTemperatureFromForecasts(forecast))
   const allWeatherForecastsForThisDay = forecast.map(

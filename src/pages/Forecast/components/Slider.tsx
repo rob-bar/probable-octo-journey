@@ -7,7 +7,6 @@ import { Units } from "src/core/Config"
 import { LargeWeatherCard } from "src/components/LargeWeatherCard"
 
 type SliderProps = {
-  unit: Units
   forecast: ForecastResponse
   today: Date
   currentDate: Date
@@ -15,7 +14,6 @@ type SliderProps = {
 }
 
 export const Slider = ({
-  unit,
   forecast,
   today,
   currentDate,
@@ -38,11 +36,7 @@ export const Slider = ({
         </Button>
       </PrevArrow>
       <ForeCastCardWrapper>
-        <LargeWeatherCard
-          unit={unit}
-          forecast={forecast}
-          currentDate={currentDate}
-        />
+        <LargeWeatherCard forecast={forecast} currentDate={currentDate} />
       </ForeCastCardWrapper>
       <NextArrow>
         <Button

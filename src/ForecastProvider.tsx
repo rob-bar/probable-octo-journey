@@ -5,15 +5,15 @@ import {
 } from "./api/getForecastForFiveDays"
 import { LoadingPage } from "./pages/Loading"
 import { ForecastPage } from "./pages/Forecast"
-import { Config } from "./core/Config"
 import { CityContext } from "./core/context/CityProvider"
+import { UnitContext } from "./core/context/UnitProvider"
 
 export const ForecastProvider = (): JSX.Element => {
   const [forecast, setForecast] = useState<ForecastResponse | null>(null)
   const [isLoading, setIsLoading] = useState(true)
 
   const { city } = useContext(CityContext)
-  const [unit, setUnit] = useState(Config.unit)
+  const { unit } = useContext(UnitContext)
 
   async function fetchForecast() {
     setForecast(await getForecastForFiveDays(unit, city))
@@ -26,5 +26,5 @@ export const ForecastProvider = (): JSX.Element => {
 
   if (isLoading || forecast === null) return <LoadingPage />
 
-  return <ForecastPage forecast={forecast} unit={unit} setUnit={setUnit} />
+  return <ForecastPage forecast={forecast} />
 }

@@ -15,15 +15,12 @@ Some small remarks from my end:
 
   - api holds all calls to apis (in this case 1 call)
   - components hold more general components for reuse anywhere in the app
-  - core holds a config and all the pure functions with their tests
+  - core holds a config, context and all the pure functions with their tests
   - pages holds the loading and the forecastPage
   - components more bound to the page I kept in the pages directory (like HourlyCard & Slider for example)
   - some components can be split up even further and maybe Atomic Design can help, but for now this feels fine.
 
-- I did not use React.context for this small application I know it would avoid a small prop drill here and there.
-  for city and unit coming from ForecastProvider it would have been a good case.
-
-- I did however create a ForecastProvider in the root of src/ that swaps the pages according to the request
+- I did create a ForecastProvider in the root of src/ that swaps the pages according to the request
 
 Lastly: as for style you'll see me using more imperative functional programming style. Did not include an FP lib for now.
 

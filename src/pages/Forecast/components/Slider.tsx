@@ -8,7 +8,6 @@ import { LargeWeatherCard } from "src/components/LargeWeatherCard"
 
 type SliderProps = {
   unit: Units
-  city: string
   forecast: ForecastResponse
   today: Date
   currentDate: Date
@@ -17,7 +16,6 @@ type SliderProps = {
 
 export const Slider = ({
   unit,
-  city,
   forecast,
   today,
   currentDate,
@@ -42,7 +40,6 @@ export const Slider = ({
       <ForeCastCardWrapper>
         <LargeWeatherCard
           unit={unit}
-          city={city}
           forecast={forecast}
           currentDate={currentDate}
         />

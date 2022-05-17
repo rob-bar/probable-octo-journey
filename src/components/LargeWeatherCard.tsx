@@ -16,20 +16,21 @@ import {
   ForecastResponse,
 } from "src/api/getForecastForFiveDays"
 import { WeatherCondition, WeatherIcon } from "./WeatherIcon"
+import { useContext } from "react"
+import { CityContext } from "src/core/context/CityProvider"
 
 type LargeWeatherCardProps = {
   unit: Units
-  city: string
   forecast: ForecastResponse
   currentDate: Date
 }
 
 export const LargeWeatherCard = ({
   unit,
-  city,
   forecast,
   currentDate,
 }: LargeWeatherCardProps): JSX.Element => {
+  const { city } = useContext(CityContext)
   // used Techniques here are => Abstraction & Composition
   const averageTempForTheNextThreeDays = average(
     getTemperatureFromForecasts(

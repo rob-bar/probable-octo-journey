@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import {
   getForecastForFiveDays,
   ForecastResponse,
@@ -6,12 +6,13 @@ import {
 import { LoadingPage } from "./pages/Loading"
 import { ForecastPage } from "./pages/Forecast"
 import { Config } from "./core/Config"
+import { CityContext } from "./core/context/CityProvider"
 
 export const ForecastProvider = (): JSX.Element => {
   const [forecast, setForecast] = useState<ForecastResponse | null>(null)
   const [isLoading, setIsLoading] = useState(true)
 
-  const [city, setCity] = useState(Config.city)
+  const { city } = useContext(CityContext)
   const [unit, setUnit] = useState(Config.unit)
 
   async function fetchForecast() {
@@ -25,13 +26,5 @@ export const ForecastProvider = (): JSX.Element => {
 
   if (isLoading || forecast === null) return <LoadingPage />
 
-  return (
-    <ForecastPage
-      forecast={forecast}
-      unit={unit}
-      setUnit={setUnit}
-      city={city}
-      setCity={setCity}
-    />
-  )
+  return <ForecastPage forecast={forecast} unit={unit} setUnit={setUnit} />
 }

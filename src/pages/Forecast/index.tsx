@@ -10,19 +10,16 @@ import { incrementDate, filterForecastByDateOffsets } from "src/core/pure"
 import { Slider } from "./components/Slider"
 import { UnitSwitcher } from "./components/UnitSwitcher"
 import { HourlyCard } from "./components/HourlyCard"
+import { CitySearcher } from "./components/CitySearcher"
 
 type ForecastPageProps = {
   forecast: ForecastResponse
-  city: string
-  setCity: (s: string) => void
   unit: Units
   setUnit: (u: Units) => void
 }
 
 export const ForecastPage = ({
   forecast,
-  city,
-  setCity,
   unit,
   setUnit,
 }: ForecastPageProps): JSX.Element => {
@@ -35,17 +32,10 @@ export const ForecastPage = ({
       <Header>
         <Title>Forecast App</Title>
         <UnitSwitcher unit={unit} setUnit={setUnit} />
-        <TextField
-          id="search-city"
-          placeholder="City"
-          variant="outlined"
-          value={city}
-          onChange={e => setCity(e.target.value)}
-        />
+        <CitySearcher />
       </Header>
       <Slider
         unit={unit}
-        city={city}
         forecast={forecast}
         today={today}
         currentDate={currentDate}
